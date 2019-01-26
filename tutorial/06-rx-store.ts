@@ -69,7 +69,7 @@ console.log(store.getState()); // -> 1
 // observing!
 console.log('-- store2 --');
 let store2 = new Store<number>(reducer, 0);
-store2.subscribe((newState => console.log("state: ", newState))); // -> state: 0
+store2.subscribe(newState => console.log("state: ", newState))); // -> state: 0
 store2.dispatch({ type: 'INCREMENT' }); // -> state: 1
 store2.dispatch({ type: 'INCREMENT' }); // -> state: 2
 store2.dispatch({ type: 'DECREMENT' }); // -> state: 1

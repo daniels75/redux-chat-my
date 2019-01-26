@@ -19,8 +19,7 @@ const devtools: StoreEnhancer<AppState> =
 
 export function createAppStore(): Store<AppState> {
   return createStore<AppState>(
-    reducer,
-    compose(devtools)
+    reducer
   );
 }
 
