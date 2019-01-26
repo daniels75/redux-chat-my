@@ -1,8 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import {Store} from 'redux';
+import {Action, ActionCreator,  Store} from 'redux';
 import {AppStore} from "./app.store";
 import {AppState} from "./app.state";
 import * as CounterActions from './counter.actions';
+import {INCREMENT} from "./counter.actions";
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,19 @@ export class AppComponent {
   }
 
   increment() {
-    this.store.dispatch(CounterActions.increment())
+    let incrAction:Action =  {
+      type: INCREMENT
+    }
+
+    let addAction: ActionCreator<Action> = (args) => ({...incrAction})
+
+    // 1st option
+    this.store.dispatch(incrAction)
+    // 2nd option
+    this.store.dispatch(CounterActions.increment());
+    // 3rd option
+    this.store.dispatch(addAction());
+
   }
 
   decrement() {
