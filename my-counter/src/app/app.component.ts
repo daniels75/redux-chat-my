@@ -13,15 +13,22 @@ export class AppComponent {
   counter: number = 0;
 
   constructor(@Inject(AppStore) private store: Store<AppState>) {
-    
+    this.store.subscribe( () => this.update())
+    this.update();
+  }
+
+  update() {
+    const value:AppState = this.store.getState() as AppState;
+    this.counter = value.counter;
   }
 
   increment() {
-
+    this.store.dispatch(CounterActions.increment())
   }
 
   decrement() {
-
+    this.store.dispatch(CounterActions.decrement());
   }
 
 }
+
